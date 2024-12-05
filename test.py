@@ -7,6 +7,7 @@ import os
 from langchain_openai import ChatOpenAI
 import base64
 from modules.pdf_to_image import pdf_page_to_base64
+from modules.server import app
 from IPython.display import Image as IPImage
 from langchain_core.messages import HumanMessage
 
@@ -40,11 +41,13 @@ def message_with_image(query):
 
 toolkit = GmailToolkit()
 tools = toolkit.get_tools()
+llm.invoke
 # agent executor gives more comprehensive output
 # agent_executor = create_react_agent(llm, tools)
 llm_with_tools = llm.bind_tools(tools)
 
 if __name__ == '__main__':
+    app.run(debug=True)
 
     while True:
         question = input("\033[92mPosez votre question ou tapez 'q' pour quitter: \033[0m")
